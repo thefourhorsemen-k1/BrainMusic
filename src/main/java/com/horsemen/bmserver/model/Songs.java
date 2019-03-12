@@ -17,10 +17,15 @@ public class Songs {
     private String name;
     private String songUrl;
     private String imageUrl;
+    private String category;
 
-    @ManyToOne
-    @JoinColumn(name = "Category_id")
-    private Category category;
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public Songs() {
     }
@@ -63,11 +68,5 @@ public class Songs {
         this.imageUrl = imageUrl;
     }
 
-    public Category getCategory() {
-        return category;
-    }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 }
