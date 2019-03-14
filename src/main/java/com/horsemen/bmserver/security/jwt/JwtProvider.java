@@ -22,9 +22,10 @@ public class JwtProvider {
 
     public String generateJwtToken(Authentication authentication) {
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
-
+        Claims claims = Jwts.claims().setSubject(userPrinciple.getUsername());
+        claims.put("roles", userPrinciple.getAuthorities().stream().map(a -> ((GrantedAuthority) a).getAuthority()).collect(Collectors.toList()));
         return Jwts.builder()
-                .setSubject((userPrinciple.getUsername()))
+                .setClaims(claims)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpiration * 1000))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
