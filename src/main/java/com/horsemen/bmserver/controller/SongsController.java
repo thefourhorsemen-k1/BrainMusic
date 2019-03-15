@@ -17,7 +17,7 @@ public class SongsController {
     @Autowired
     SongsRepository songsRepository;
 
-    @GetMapping("/admin/songs")
+    @GetMapping("/user/songs")
     public List <Songs> getAllSongs() {
         return songsRepository.findAll();
     }
