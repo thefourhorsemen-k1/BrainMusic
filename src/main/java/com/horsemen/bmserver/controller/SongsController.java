@@ -31,18 +31,10 @@ public class SongsController {
     public ResponseEntity <?> deleteSongs(@PathVariable(value = "id") Long songsId) {
         Songs songs = songsRepository.findById(songsId)
                 .orElseThrow(() -> new ResourceNotFoundException("Songs", "id", songsId));
-
         songsRepository.delete(songs);
-
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/admin/songs/{id}")
-    public Songs getSongsById(@PathVariable(value = "id") Long songsId) {
-        return songsRepository.findById(songsId)
-                .orElseThrow(() -> new ResourceNotFoundException("Songs", "id", songsId));
-    }
-    
     @PutMapping("/admin/songs/{id}")
     public Songs updateSongs(@PathVariable(value = "id") Long songsId,
                              @Valid @RequestBody Songs songsDetails) {
