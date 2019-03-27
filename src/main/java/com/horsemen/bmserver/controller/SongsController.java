@@ -42,12 +42,7 @@ public class SongsController {
         return songsRepository.findById(songsId)
                 .orElseThrow(() -> new ResourceNotFoundException("Songs", "id", songsId));
     }
-
-    @GetMapping("/admin/songs/category/{category}")
-    public List<Songs> getSongsByCate(@PathVariable(value = "category") String songsCate) {
-        return songsRepository.findAllByCategoryContaining(songsCate);
-    }
-
+    
     @PutMapping("/admin/songs/{id}")
     public Songs updateSongs(@PathVariable(value = "id") Long songsId,
                              @Valid @RequestBody Songs songsDetails) {
